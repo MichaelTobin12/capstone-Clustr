@@ -13,7 +13,7 @@ class GroupList extends Component {
   state = { groups: [], ref: {} };
 
   componentWillMount() {
-    axios.get(`http://localhost:3000/`)
+    axios.get(`https://localhost:3000/${this.userId}`)
       .then(response => this.setState({ groups: response.data }));
   }
 
