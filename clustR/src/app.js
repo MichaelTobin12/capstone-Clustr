@@ -72,7 +72,7 @@ class App extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Header headerText={'Groups'} />
+        <Header headerText={'clustR'} />
         {this.renderButton()}
         {this.renderContent()}
       </View>

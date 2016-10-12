@@ -11,8 +11,10 @@ var db = firebase.database();
 var ref = db.ref("users");
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  console.log(req.params.id);
+router.get('/send/:userId', function(req, res, next) {
+  // console.log(req.params.userId);
+  // console.log(req.params.groupId);
+  // console.log(req.params.content);
   client.messages.create({
       body: 'https://www.youtube.com/watch?v=Aum817TH--U',
       to: '+13038425270',  // Text this number
@@ -34,5 +36,6 @@ router.get('/getgroups/:id', function(req, res, next) {
     });
   });
 });
+
 
 module.exports = router;

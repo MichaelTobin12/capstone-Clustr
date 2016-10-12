@@ -24,7 +24,9 @@ state = { contacts: [] };
 
   renderContacts() {
     return this.state.contacts.map(contact =>
-      <CardSection key={contact.familyName} contact={contact} />
+      <CardSection key={contact.familyName} contact={contact}>
+        <Text>{contact.givenName} {contact.familyName} </Text>
+      </CardSection>
     );
   }
 

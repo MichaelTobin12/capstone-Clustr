@@ -6,3 +6,4 @@ export * from './GroupList';
 export * from './header';
 export * from './Input';
 export * from './Spinner';
+export * from './ButtonWithAjax';
