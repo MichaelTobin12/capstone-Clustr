@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import firebase from 'firebase';
 import axios from 'axios';
 import { GroupDetail } from './';
@@ -10,18 +10,17 @@ class GroupList extends Component {
    this.userId = props.userId;
  }
 
-  state = { groups: [], ref: {} };
+  state = { groups: [], ref: [] };
 
   componentWillMount() {
-    axios.get(`https://localhost:3000/${this.userId}`)
+    axios.get(`https://clustrbackend.herokuapp.com/users/getgroups/${this.userId}`)
       .then(response => this.setState({ groups: response.data }));
   }
 
-  ref = firebase.database().ref();
-
   renderGroups() {
+    console.log(this.state.groups);
     return this.state.groups.map(group =>
-      <GroupDetail key={group.title} group={group} />
+      <GroupDetail key={group.name} group={group} />
     );
   }
 

@@ -3,7 +3,7 @@ import { View, Text, Image, Linking } from 'react-native';
 import { Card, CardSection, Button } from './';
 
 const GroupDetail = ({ group }) => {
-  const { title, artist, thumbnail_image, image, url } = group;
+  const { name, artist, thumbnail_image, image, url } = group;
   const {
     thumbnailStyle,
     headerContentStyle,
@@ -16,15 +16,12 @@ const GroupDetail = ({ group }) => {
     <Card>
       <CardSection>
         <View style={thumbnailContainerStyle}>
-          <Image source={{ uri: thumbnail_image }} style={thumbnailStyle} />
+          <Image source={{ uri: image }} style={thumbnailStyle} />
         </View>
         <View style={headerContentStyle}>
-          <Text style={headerTextStyle}>{title}</Text>
-          <Text>{artist}</Text>
+          <Text style={headerTextStyle}>{name}</Text>
         </View>
       </CardSection>
-
-
     </Card>
   );
 };
