@@ -8,7 +8,7 @@ var client = new twilio.RestClient(accountSid, authToken);
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  console.log('ayyo');
+  console.log(req.params.id);
   client.messages.create({
       body: 'https://www.youtube.com/watch?v=Aum817TH--U',
       to: '+13038425270',  // Text this number

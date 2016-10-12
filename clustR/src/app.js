@@ -22,7 +22,7 @@ class App extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.setState({ loggedIn: true, index: 1, userData: this.updateGroupsPage(user.uid), userId: user.uid });
+        this.setState({ loggedIn: true, index: 1, userId: user.uid });
         console.log(this.state.userId);
       } else {
         const FBuser = user.uid;
@@ -36,14 +36,8 @@ class App extends Component {
   updateGroupsPage(userId) {
     this.db.child('users').once('value', snap => {
       snap.forEach((user) => {
-        if (user.val().FBuser === userId) {
-          if (user.val().numbers.length !== 0) {
-            const returner = user.val().numbers;
-            this.setState({ userData: returner });
-          } else {
-            this.setState({ index: 3 });
-          }
-        }
+        console.log(user);
+        console.log(userId);
       });
     });
   }
@@ -64,7 +58,7 @@ class App extends Component {
     switch (this.state.index) {
       case 1:
         return (
-            <GroupList />
+            <GroupList userId={this.state.userId} />
         );
       case 2:
         return <LoginForm />;

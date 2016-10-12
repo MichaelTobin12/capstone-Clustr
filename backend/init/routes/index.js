@@ -5,26 +5,21 @@ var firebase = require("firebase");
 /* GET home page. */
 var db = firebase.database();
 var ref = db.ref("users");
-var uid = '0';
-var customToken = firebase.auth().createCustomToken(uid);
 
-router.get('/:firstName/:lastName/:phoneNumber', function(req, res, next) {
-  console.log('dat sayn');
-  console.log(req.params.firstName);
-  
-  var number = req.params.phoneNumber;
-  var last_name = req.params.last_name;
-  var first_name = req.params.firstName;
-  ref.set({
-    name : {
-      first_name: `${req.params.firstName}`,
-      last_name: `${req.params.lastName}`
-    }
+router.get('/:id', function(req, res, next) {
+  console.log(req.params.id);
+  let sentBackArray = [];
+  ref.once('value', snap => {
+    snap.forEach((user) => {
+      if(user.val().FBuser === req.params.id){
+        for (var variable in user.val().groups) {
+          sentBackArray.push(variable);
+        }
+        console.log(sentBackArray);
+        res.send({data : sentBackArray})
+      }
+    });
   });
-  ref.once("value", function(snapshot) {
-    console.log(snapshot.val());
-  });
-  res.render('index', { title: 'lol' });
 });
 
 module.exports = router;

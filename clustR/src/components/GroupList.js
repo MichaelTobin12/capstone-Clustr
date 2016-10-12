@@ -5,10 +5,15 @@ import axios from 'axios';
 import { GroupDetail } from './';
 
 class GroupList extends Component {
+  constructor(props) {
+   super(props);
+   this.userId = props.userId;
+ }
+
   state = { groups: [], ref: {} };
 
   componentWillMount() {
-    axios.get('https://rallycoding.herokuapp.com/api/music_albums')
+    axios.get(`http://localhost:3000/`)
       .then(response => this.setState({ groups: response.data }));
   }
 
