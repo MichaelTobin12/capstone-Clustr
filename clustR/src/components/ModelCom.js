@@ -47,7 +47,10 @@ class ModalCom extends Component {
             onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
             }}
-            />
+            >
+              <Text>Close</Text>
+            </TouchableHighlight>
+
           </View>
          </View>
         </Modal>
