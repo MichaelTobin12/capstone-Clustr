@@ -11,24 +11,21 @@ class GroupList extends Component {
    this.userId = props.userId;
  }
 
-  state = { groups: [], sendMessage: [], clicked: [] };
+  state = { groups: [], sendMessage: [], clicked: [], content: '' };
 
   componentWillMount() {
     axios.get(`https://clustrbackend.herokuapp.com/users/getgroups/${this.userId}`)
       .then(response => this.setState({ groups: response.data }));
   }
 
-  buttonInputEnter(group) {
-    console.log(this.userId);
-    console.log(group);
-    axios.get(`https://clustrbackend.herokuapp.com/users/send/R7UdQvDKAHUWF8WrvEwX9tnZtyP2`);
+  buttonInputEnter() {
+
   }
 
   renderGroups() {
-    console.log(this.state.groups);
     return this.state.groups.map(group =>
       <ButtonWithAjax
-      onPress={this.buttonInputEnter.bind(group)}
+      onPress={this.buttonInputEnter.bind(this)}
       key={group.name} group={group}
       />
     );
@@ -45,7 +42,9 @@ class GroupList extends Component {
         >
         {this.renderGroups()}
         </View>
+        <Modal />
       </ScrollView>
+
     );
   }
 }

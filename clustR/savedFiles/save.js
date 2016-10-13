@@ -18,3 +18,17 @@
 //   .catch(e => {
 //     console.log('broke', e);
 //   });
+
+
+// router.get('/sendmessage/:message', function(req, res, next) {
+//   let message = req.params.message
+//   client.messages.create({
+//       body: `${message}`,
+//       to: '+13038425270',  // Text this number
+//       from: '+17209618767 ' // From a valid Twilio number
+//   }, function(err, message) {
+//       console.log(err, message);
+//   });
+//   res.send('respond with a resource');
+// });
+//

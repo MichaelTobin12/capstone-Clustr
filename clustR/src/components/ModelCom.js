@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, Input, Text, TouchableHighlight, View } from 'react-native';
+import { Modal, Text, TouchableHighlight, View } from 'react-native';
+import axios from 'axios';
+import { CardSection, Input, Button } from './';
 
 class ModalCom extends Component {
 
@@ -7,9 +9,15 @@ class ModalCom extends Component {
     super(props);
     this.state = { modalVisible: false };
   }
+  state = { message: '' };
 
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
+  }
+
+  buttonInputEnterModal() {
+    axios.get(`https://clustrbackend.herokuapp.com/users/send/${this.state.message}`)
+    .then(this.setModalVisible(!this.state.modalVisible));
   }
 
   render() {
@@ -23,14 +31,24 @@ class ModalCom extends Component {
         >
          <View style={{ marginTop: 22 }}>
           <View>
-            <Text>Hello World!</Text>
-
+            <CardSection>
+              <Input
+                placeholder="Message"
+                value={this.state.message}
+                onChangeText={message => this.setState({ message })}
+              />
+            </CardSection>
+            <CardSection>
+              <Button
+              onPress={this.buttonInputEnterModal.bind(this)}
+              > Send </Button>
+            </CardSection>
             <TouchableHighlight
             onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
             }}
             >
-              <Text>Hide Modal</Text>
+              <Text>Close</Text>
             </TouchableHighlight>
 
           </View>
@@ -42,7 +60,7 @@ class ModalCom extends Component {
           this.setModalVisible(true);
         }}
         >
-          <Text>Show Modal</Text>
+          <Text>Show</Text>
         </TouchableHighlight>
 
       </View>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, Linking } from 'react-native';
 import { Card, CardSection, Button } from './';
-
+  
 const GroupDetail = ({ group }) => {
   const { name, artist, thumbnail_image, image, url } = group;
   const {
