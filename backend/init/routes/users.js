@@ -15,7 +15,7 @@ function getGroup() {
   ref.once('value', snap => {
     snap.forEach((user) => {
       user.val().groups.forEach((group)=>{
-        if(group.name === "Soccer"){
+        if(group.name === "Fantasy"){
           sendMessage(group.numbers, message);
         }
       })

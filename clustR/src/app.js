@@ -46,6 +46,10 @@ class App extends Component {
     this.setState({ loggedIn: true, index: 3 });
   }
 
+  logoutRealQuick() {
+    firebase.auth().signOut();
+  }
+
   renderButton() {
     return (
       <CardSection>

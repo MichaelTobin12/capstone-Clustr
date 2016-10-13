@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { ScrollView, Text, View } from 'react-native';
 import firebase from 'firebase';
 import axios from 'axios';
-import { GroupDetail, ButtonWithAjax } from './';
+import { ButtonWithAjax, Spinner } from './';
 import Modal from '../components/ModelCom';
 
 class GroupList extends Component {
   constructor(props) {
    super(props);
    this.userId = props.userId;
+   this.state.index = 1;
  }
 
-  state = { groups: [], sendMessage: [], clicked: [], content: '' };
+  state = { groups: [], sendMessage: [], clicked: [], content: '', index: 0 };
 
   componentWillMount() {
     axios.get(`https://clustrbackend.herokuapp.com/users/getgroups/${this.userId}`)
@@ -19,16 +20,23 @@ class GroupList extends Component {
   }
 
   buttonInputEnter() {
-
+    this.setState({ index: 2 });
   }
 
   renderGroups() {
-    return this.state.groups.map(group =>
-      <ButtonWithAjax
-      onPress={this.buttonInputEnter.bind(this)}
-      key={group.name} group={group}
-      />
-    );
+    switch (this.state.index) {
+      case 1:
+        return this.state.groups.map(group =>
+          <ButtonWithAjax
+          onPress={this.buttonInputEnter.bind(this)}
+          key={group.name} group={group}
+          />
+        );
+      case 2:
+        return <Modal />;
+      default:
+        return <Spinner size="large" />;
+    }
   }
 
   render() {
@@ -42,7 +50,6 @@ class GroupList extends Component {
         >
         {this.renderGroups()}
         </View>
-        <Modal />
       </ScrollView>
 
     );

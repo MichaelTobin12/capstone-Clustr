@@ -7,7 +7,7 @@ class ModalCom extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { modalVisible: false };
+    this.state = { modalVisible: true };
   }
   state = { message: '' };
 
@@ -47,22 +47,10 @@ class ModalCom extends Component {
             onPress={() => {
               this.setModalVisible(!this.state.modalVisible);
             }}
-            >
-              <Text>Close</Text>
-            </TouchableHighlight>
-
+            />
           </View>
          </View>
         </Modal>
-
-        <TouchableHighlight
-        onPress={() => {
-          this.setModalVisible(true);
-        }}
-        >
-          <Text>Show</Text>
-        </TouchableHighlight>
-
       </View>
     );
   }
