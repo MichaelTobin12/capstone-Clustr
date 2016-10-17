@@ -27,7 +27,7 @@ function sendMessage(groupNumberArray, message) {
   console.log(groupNumberArray);
   for (var i = 0; i < groupNumberArray.length; i++) {
     client.messages.create({
-        body: `${message}`,
+        body: `Michael Tobin says: ${message}`,
         to: `${groupNumberArray[i]}`,  // Text this number
         from: '+17209618767 ' // From a valid Twilio number
     }, function(err, message) {
