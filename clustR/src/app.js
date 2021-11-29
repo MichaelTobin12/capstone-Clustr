@@ -15,7 +15,7 @@ class App extends Component {
       authDomain: 'clustr-b2f2f.firebaseapp.com',
       databaseURL: 'https://clustr-b2f2f.firebaseio.com',
       storageBucket: 'clustr-b2f2f.appspot.com',
-      messagingSenderId: '1087315457917'
+      messagingSenderId: '1087315457916'
     });
 
     this.db = firebase.database().ref();
